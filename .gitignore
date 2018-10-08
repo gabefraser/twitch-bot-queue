@@ -61,6 +61,6 @@ typings/
 .next
 
 # Twitch Queue Bot
-config.json
-options.json
 test.js
+config/config.json
+config/options.json
