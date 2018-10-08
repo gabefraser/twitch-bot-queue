@@ -3,8 +3,8 @@ const tmi = require('tmi.js');
 
 // Variables Initialisation.
 let command_prefix = '!';
-let options = require('./config.json');
-let commands = { test, joinqueue };
+let options = require('./options.json');
+let commands = { test };
 
 // Command Functions.
 function test(target, context, params){
