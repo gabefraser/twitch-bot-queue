@@ -1,0 +1,23 @@
+{
+  "name": "twitch-bot-queue",
+  "version": "1.0.0",
+  "description": "Twitch Bot that creates a 'queuing' system for people who have follower/sub games.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabefraser/twitch-bot-queue.git"
+  },
+  "author": "gabefraser",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/gabefraser/twitch-bot-queue/issues"
+  },
+  "homepage": "https://github.com/gabefraser/twitch-bot-queue#readme",
+  "dependencies": {
+    "haikudos": "^1.0.7",
+    "tmi.js": "^1.2.1"
+  }
+}
