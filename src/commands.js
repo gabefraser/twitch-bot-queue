@@ -13,8 +13,13 @@ let test = function(target, context, params){
 
 let joinqueue = function(target, context, params){
     if(params.length){
-        // Set-up for DB INSERT.
         const twitch_name = context.username;
+        var query = { twitch_name: twitch_name };
+        if (!db.select(query)){
+            helper.send_message(target, context, `@${context.username}, You're already in the queue.`);
+            return;
+        }
+        // Set-up for DB INSERT.
         const epic_name = params.join(' ');
         // Create query.
         var query = { twitch_name: twitch_name, epic_name: epic_name };

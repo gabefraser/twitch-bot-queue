@@ -5,6 +5,7 @@ const mysql = require('mysql');
 let helper = require('../src/helper.js');
 let config = require('../config/config.json');
 let db = config.database;
+var row_length = 0;
 
 // Initialise the SQL connection.
 let con = mysql.createConnection(db);
@@ -16,7 +17,7 @@ con.connect(function(err){
 });
 
 let insert = function(query){
-    // Variables to be used within in the function
+    // Variables to be used within in the function.
     const length = Object.keys(query).length;
     var columns = ""; // Set-up columns string.
     var values = ""; // Set-up values string.
@@ -45,10 +46,38 @@ let insert = function(query){
     var sql = `INSERT INTO queue(${columns}) VALUES (${values})`;
 
     // Execute the INSERT.
-    con.query(sql, function (err, result) {
+    con.query(sql, function (err) {
         if(err) throw err;
         console.log(`[${helper.timestamp()}] Executed the ${sql} successfully.`);
     });
+    return false;
+}
+
+let select = function(query){
+    // Variables to be used within in the function.
+    var item = "";
+    var prop = "";
+
+    // Assign the value & item to the corresponding variables.
+    for(value in query){
+        item = value;
+        prop = query[value];
+    }
+
+    const sql = `SELECT ${item} FROM queue WHERE ${item}='${prop}'`;
+
+    con.query(sql, function(err, row){
+        if(err) throw err;
+        row_length = Object.keys(row).length;
+        console.log(`[${helper.timestamp()}] Executed the ${sql} successfully.`);
+    });
+
+    if(row_length > 0){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 module.exports.insert = insert;
+module.exports.select = select;
