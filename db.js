@@ -15,14 +15,38 @@ con.connect(function(err){
 });
 
 let insert = function(query){
-    // Create the start of the query.
-    const command = "INSERT INTO";
-    const sql = `${command} ${query}`;
+    // Variables to be used within in the function
+    const length = Object.keys(query).length;
+    var columns = ""; // Set-up columns string.
+    var values = ""; // Set-up values string.
+
+    // Set the column title for the SQL statement.
+    var i = 1; // Set-up count for query.
+    for (item in query){
+        i++;
+        columns += `${item}`;
+        if(i <= length){
+            columns += ', ';
+        }
+    }
+
+    // Set the values for the SQL statement.
+    var i = 1; // Set-up count for query.
+    for (item in query){
+        i++;
+        values += `'${query[item]}'`;
+        if(i <= length){
+            values += ', ';
+        }
+    }
+
+    // Setup the SQL statement.
+    var sql = `INSERT INTO queue(${columns}) VALUES (${values})`;
 
     // Execute the INSERT.
     con.query(sql, function (err, result) {
         if(err) throw err;
-        console.log(`Executed the ${query} with a result of `);
+        console.log(`Executed the ${sql} successfully.`);
     });
 }
 

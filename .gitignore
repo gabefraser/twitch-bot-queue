@@ -63,3 +63,4 @@ typings/
 # Twitch Queue Bot
 config.json
 options.json
+test.js
