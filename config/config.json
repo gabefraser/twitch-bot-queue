@@ -1,0 +1,11 @@
+{
+    "database": {
+        "host": "",
+        "user": "",
+        "password": "",
+        "database": ""
+    },
+    "settings": {
+        "command_prefix": "!"
+    }
+}
