@@ -2,8 +2,10 @@
 const tmi = require('tmi.js');
 
 // Variables Initialisation.
-let command_prefix = '!';
 let options = require('./options.json');
+let config = require('./config.json');
+let db = require('./db.js');
+let command_prefix = config.settings.command_prefix;
 let commands = { test };
 
 // Command Functions.
@@ -12,10 +14,6 @@ function test(target, context, params){
         const msg = params.join(' ');
         sendMessage(target, context, msg);
     }
-}
-
-function joinqueue(target, context, params){
-    console.log('DEV');
 }
 
 // Helper Functions.
@@ -37,8 +35,6 @@ client.on('disconnected', onDisconnectedHandler);
 
 // Connect the Client.
 client.connect();
-
-// Event Handler Functions.
 
 // Chat Message Handler.
 function onMessageHandler(target, context, msg, self){
@@ -66,7 +62,7 @@ function onConnectedHandler(addr, port){
     console.log(`Connected to ${addr}:${port}`);
 }
 
-// Disconected Handler.
+// Disconnected Handler.
 function onDisconnectedHandler(reason){
     console.log(`Disconnected: ${reason}`);
     process.exit(1);

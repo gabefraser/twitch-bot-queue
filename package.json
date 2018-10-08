@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/gabefraser/twitch-bot-queue#readme",
   "dependencies": {
+    "mysql": "^2.16.0",
     "tmi.js": "^1.2.1"
   }
 }
