@@ -19,7 +19,7 @@ let onMessageHandler = function (target, context, msg, self){
     const params = parse.splice(1);
 
     if(command_name in commands.list){
-        const command = commands[command_name];
+        const command = commands.list[command_name];
         command(target, context, params);
         console.log(`[${helper.timestamp()}] Executed command ${command_name} for ${context.username}`);
     }else{
